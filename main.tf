@@ -14,5 +14,5 @@ resource "google_compute_firewall" "allow-ssh-to-neo4j" {
   }
 
   target_tags = ["${var.target_tags}"]
-  source_ranges = ["${var.source_address_cidr_1}"]
+  source_ranges = ["${var.source_address_cidr}"]
 }

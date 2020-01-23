@@ -10,6 +10,7 @@ variable "target_tags" {
   description = "what instances will this firewall rule be applied to"
 }
 
-variable "source_address_cidr_1" {
+variable "source_address_cidr" {
   description = "what cidr block will be granted access to this instance"
+  type  = "list"
 }
