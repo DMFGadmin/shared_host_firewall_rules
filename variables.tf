@@ -13,3 +13,7 @@ variable "target_tags" {
 variable "source_address_cidr" {
   description = "what cidr block will be granted access to this instance"
 }
+
+variable "jenkins_source_address_cidr" {
+  description = "what cidr block will be granted access to this instance"
+}
