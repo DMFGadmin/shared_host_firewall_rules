@@ -50,5 +50,5 @@ resource "google_compute_firewall" "allow-traffic-for-iap" {
   }
 
   source_ranges = ["${var.iap_source_address_cidr}"]
-  target_tags = ["${var.neo4j_access_source_tags}"]
+  target_tags = ["${var.target_tags}"]
 }
