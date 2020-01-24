@@ -21,7 +21,3 @@ variable "jenkins_source_address_cidr" {
 variable "iap_source_address_cidr" {
   description = "what cidr block will be granted access to this instance"
 }
-
-variable "neo4j_access_source_tags" {
-  description = "what cidr block will be granted access to this instance"
-}
