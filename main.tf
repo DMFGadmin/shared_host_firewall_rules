@@ -1,6 +1,6 @@
-resource "google_compute_firewall" "allow-ssh-to-neo4j" {
-  name = "allow-ssh-to-neo4j-instance"
-  description = "Allow port 22 from approved addresses"
+resource "google_compute_firewall" "allow-iap-to-neo4j" {
+  name = "allow-iap-to-neo4j-instance"
+  description = "Allow traffic from iap to neo4j-instance"
   network =   var.network
   direction = "INGRESS"
   project = var.project_id
@@ -10,11 +10,10 @@ resource "google_compute_firewall" "allow-ssh-to-neo4j" {
 
   allow {
     protocol = "tcp"
-    ports = ["22"]
   }
 
   target_tags = ["${var.target_tags}"]
-  source_ranges = ["${var.source_address_cidr}"]
+  source_ranges = ["${var.iap_source_address_cidr}"]
 }
 
 resource "google_compute_firewall" "allow-traffic-from-jenkins" {
