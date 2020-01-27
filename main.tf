@@ -1,9 +1,18 @@
+data "terraform_remote_state" "project-and-networks" {
+  backend = "remote"
+  config = {
+    organization = "AFRLDigitalMFG"
+    workspaces = {
+      name = "shared_vpc_projects"
+    }
+  }
+}
 resource "google_compute_firewall" "allow-iap-to-neo4j" {
   name = "allow-iap-to-neo4j-instance"
   description = "Allow traffic from iap to neo4j-instance"
-  network =   var.network
+  network =   data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name
   direction = "INGRESS"
-  project = var.project_id
+  project = data.terraform_remote_state.project-and-networks.outputs.afrl-big-data-project-id
   disabled = "false"
   priority = 1000
   enable_logging = "true"
@@ -19,9 +28,9 @@ resource "google_compute_firewall" "allow-iap-to-neo4j" {
 resource "google_compute_firewall" "allow-traffic-from-jenkins" {
   name = "allow-traffic-from-jenkins"
   description = "Allow jenkins traffic"
-  network =   var.network
+  network =   data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name
   direction = "INGRESS"
-  project = var.project_id
+  project = data.terraform_remote_state.project-and-networks.outputs.afrl-big-data-project-id
   disabled = "false"
   priority = 1000
   enable_logging = "true"
