@@ -18,10 +18,6 @@ variable "jenkins_source_address_cidr" {
   description = "what cidr block will be granted access to this instance"
 }
 
-variable "afrl_subnet" {
-  description = "subnet for firewall rules"
-}
-
 variable "iap_source_address_cidr" {
   description = "allow iap access to compute instances"
 }
