@@ -8,7 +8,7 @@ data "terraform_remote_state" "project-and-networks" {
   }
 }
 resource "google_compute_firewall" "allow-iap-to-neo4j" {
-  name = "allow-iap-to-neo4j-instance"
+  name = "allow-iap-to-neo4j"
   description = "Allow traffic from iap to neo4j-instance"
   network =   data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name
   direction = "INGRESS"
