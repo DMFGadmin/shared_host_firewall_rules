@@ -12,7 +12,7 @@ resource "google_compute_firewall" "allow-iap-to-neo4j" {
   description = "Allow traffic from iap to neo4j-instance"
   network =   data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name
   direction = "INGRESS"
-  project = data.terraform_remote_state.project-and-networks.outputs.afrl-big-data-project-id
+  project = data.terraform_remote_state.project-and-networks.outputs.shared-vpc-name
   disabled = "false"
   priority = 1000
   enable_logging = "true"
@@ -30,7 +30,7 @@ resource "google_compute_firewall" "allow-traffic-from-jenkins" {
   description = "Allow jenkins traffic"
   network =   data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name
   direction = "INGRESS"
-  project = data.terraform_remote_state.project-and-networks.outputs.afrl-big-data-project-id
+  project = data.terraform_remote_state.project-and-networks.outputs.shared-vpc-name
   disabled = "false"
   priority = 1000
   enable_logging = "true"
