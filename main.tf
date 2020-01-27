@@ -10,9 +10,9 @@ data "terraform_remote_state" "project-and-networks" {
 resource "google_compute_firewall" "allow-iap-to-neo4j" {
   name = "allow-iap-to-neo4j"
   description = "Allow traffic from iap to neo4j-instance"
-  network =   "${data.terraform_remote_state.project-and-networks.outputs.shared-vpc-name}/global/networks/${data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name}"
+  network =   "${var.project_id}/global/networks/${data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name}"
   direction = "INGRESS"
-  project = data.terraform_remote_state.project-and-networks.outputs.shared-vpc-name
+  project = var.project_id
   disabled = "false"
   priority = 1000
   enable_logging = "true"
@@ -28,9 +28,9 @@ resource "google_compute_firewall" "allow-iap-to-neo4j" {
 resource "google_compute_firewall" "allow-traffic-from-jenkins" {
   name = "allow-traffic-from-jenkins"
   description = "Allow jenkins traffic"
-  network =  "${data.terraform_remote_state.project-and-networks.outputs.shared-vpc-name}/global/networks/${data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name}"
+  network =  "${var.project_id}/global/networks/${data.terraform_remote_state.project-and-networks.outputs.afrl-shared-vpc-network-name}"
   direction = "INGRESS"
-  project = data.terraform_remote_state.project-and-networks.outputs.shared-vpc-name
+  project = var.project_id
   disabled = "false"
   priority = 1000
   enable_logging = "true"

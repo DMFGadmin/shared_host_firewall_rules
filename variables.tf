@@ -13,3 +13,7 @@ variable "jenkins_source_address_cidr" {
 variable "iap_source_address_cidr" {
   description = "allow iap access to compute instances"
 }
+
+variable "project_id" {
+  description = "which project will the firewall rules be deployed in"
+}
